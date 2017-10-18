@@ -147,7 +147,7 @@ Now that everything is in place, we can run composer and update the dependencies
 
 ### Dependencies
 
-Now you can finally setup your config and dependencies. I don't recall off hand if the order here is importnat or not.
+Now you can finally setup your config and dependencies. I don't recall off hand if the order here is important or not.
 
 Create your `env` file
 
@@ -177,7 +177,7 @@ nearlyfreespeech.net provides MySQL database interface, actually implemented usi
 
 nearlyfreesapeech.net lets you create a _MySQL process_ that can then contain multiple databases. The term _process_ here is equivalent to your separate db server often founf in typical infrastructure setups, and the DSN name you create is what you will use for the `DB_HOST` config value. You can create a process using the web admin pages, and then using the connection info from the MySQL process web admin page, configure your Laravel site to connect. See the MySQL section of the FAQ. Specifically, [create a process](https://members.nearlyfreespeech.net/faq?q=SetupMySQL#SetupMySQL), [process vs. database](https://members.nearlyfreespeech.net/faq?q=MySQLDatabaseProcess#MySQLDatabaseProcess) and [create a database](https://members.nearlyfreespeech.net/faq?q=CreateDatabase#CreateDatabase).
 
-PhpMyAdmin is available from a sidebar link in the admin web pages for creating a database before you try to use it with your Laravel site. The recommendation is that you create a user for each application for each of your application's database. Your application doesn't need to be able to do everything on all your databases, and the nearlyfreespeech directive is to never use your root access to a process for an application to do crud on a single DB. Follow this advice.  Using PhpMyAdmin, create a database, select the database, and then create a user from teh Priveleges tab. Then you are going to edit this user info into the `env` file. [PhpMyADmin docs are here](https://www.phpmyadmin.net/docs/).
+PhpMyAdmin is available from a sidebar link in the admin web pages for creating a database before you try to use it with your Laravel site. The recommendation is that you create a user for each application for each of your application's database. Your application doesn't need to be able to do everything on all your databases, and the nearlyfreespeech directive is to never use your root access to a process for an application to do crud on a single DB. Follow this advice.  Using PhpMyAdmin, create a database, select the database, and then create a user from the Privileges tab. Then you are going to edit this user info into the `env` file. [PhpMyADmin docs are here](https://www.phpmyadmin.net/docs/).
 
     $ cd /home/protected/laravelproject
     $ nano .env
@@ -213,7 +213,7 @@ Edit AppServiceProvider.php
 
 ## Secure your site browsing
 
-Setting up ssl for your users to access your site securely using htpps is simple on this host.
+Setting up ssl for your users to access your site securely using https is simple on this host.
 
 ### Install the certificate
 
@@ -224,6 +224,6 @@ Once you are logged in with your terminal to your host, you can easily setup htt
 
 ### Force https
 
-If you prefer to force Laravel to always use https even if a user types in a URL that is just http, you can do that [with a middleware](https://stackoverflow.com/questions/28402726/laravel-5-redirect-to-https), [a config setting](https://stackoverflow.com/questions/35827062/how-to-force-laravel-project-to-use-https-for-all-routes), and a [Schema method around your routes](https://laracasts.com/discuss/channels/laravel/how-i-can-force-all-my-routes-to-be-https-not-http?page=1).
+If you prefer to force Laravel to always use https even if a user types in a URL that is just http, you can do that [with a middleware](https://stackoverflow.com/questions/28402726/laravel-5-redirect-to-https), [a config setting](https://stackoverflow.com/questions/35827062/how-to-force-laravel-project-to-use-https-for-all-routes), and a [URL facade method around your routes](https://laracasts.com/discuss/channels/laravel/how-i-can-force-all-my-routes-to-be-https-not-http?page=1).
 
 Also, make sure you set the `APP_URL` in your `env` file to be prefixed with https, so that when Laravel renders a url or a route, it will use https by default.
