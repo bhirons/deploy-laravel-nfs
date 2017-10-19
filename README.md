@@ -64,7 +64,7 @@ This sets up a key for only this repository, which is sufficient. Now you can is
 Back to your terminal where you are connected to your host. From the `/home/protected` folder, you need to clone your repo here. Use `clone` here because it will setup the origin information, and create your new project folder. This means you can deploy updates from the same repo later without mucking about with archives etc.
 
     $ cd /home/protected
-    $ git clone git@github.com:yourusername/laraveproject.git
+    $ git clone git@github.com:yourusername/laravelproject.git
 
 
 ## Install composer
@@ -86,7 +86,7 @@ If you like, you can rename the file to just `composer`, which I like to do so I
 This is online in a few places, most notably from Pete Houston's readme linked above. The notion is to create a symlink between the public folder in the `/home/protected/laravelproject/public` and `/home/public`. And then copy the relevant files into place once the link is established.
 
     $ mv public public_bak
-    $ ln -s ~/www public
+    $ ln -s /home/public public
     $ cp -a public_bak/* public/
     $ cp public_bak/.htaccess public/
 
@@ -120,10 +120,10 @@ The web server will have to be able to write cached views and logs, so set the p
     $ chmod -R o+w storage
 
 ## Deployment and dependencies
-Now that everything is in place, we can run composer and update the dependencies. Anytime you need to deploy code updates, you will need to take these steps, so we will just do it like that this firaat time, and everytime afterward.
+Now that everything is in place, we can run composer and update the dependencies. Anytime you need to deploy code updates, you will need to take these steps, so we will just do it like that this firat time, and everytime afterward.
 
 > ### A note on deployment from git
->Don't use `pull` to deploy from git. there is [a good discussion here](https://grimoire.ca/git/stop-using-git-pull-to-deploy), and various options for [deploying from git like this one](http://gitolite.com/deploy.html). But the practical effect here, is that if you `pull` then it messes up the storage permissions you set above. So we will always use `fetch`, which doesn't mess us up and has added benefits you can read about in the first link if you are interested.
+> Don't use `pull` to deploy from git. there is [a good discussion here](https://grimoire.ca/git/stop-using-git-pull-to-deploy), and various options for [deploying from git like this one](http://gitolite.com/deploy.html). But the practical effect here, is that if you `pull` then it messes up the storage permissions you set above, and you'll have to run the `chmod` step again. So we will always use `fetch`, which doesn't mess us up and has added benefits you can read about in the first link if you are interested. I _think_ that `git reset --hard <some commit>` will have the same practical outcome as using checkout below.
 
 ### Deploy
 
@@ -132,6 +132,17 @@ Now that everything is in place, we can run composer and update the dependencies
     $ git checkout --force "origin/master"
 
 `origin/master` should be replaced with the tag you are using to deploy into production, or possibly your branch. Whichever the target happens to be based on your repo tactics. This technique detaches the HEAD on your working copy, so assumes that you are not going to edit anything here and push it back to your repo, which obviously you wouldn't do anyway right?
+
+#### Subsequent deployments
+Since `public` was changed to a symlink above, and git stores the type flag for folders, it will overwrite, basically set public back to a folder. So we now have to take the step to re-do that, although with a variation to preserve our modified index.php, and we don't have to copy htaccess this time. This could be scripted.
+
+    $ cd /home/protected/laravelfolder
+    $ cp /home/public/index.php /home/private/index.php
+    $ rm -rf public_bak
+    $ mv public public_bak
+    $ ln -s /home/public public
+    $ cp -a public_bak/* public/
+    $ cp /home/private/index.php public/
 
 ### Dependencies
 Now you can finally setup your config and dependencies. I don't recall off hand if the order here is important or not.
