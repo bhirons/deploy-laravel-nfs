@@ -15,6 +15,12 @@ To do this you need a funded account on nearlyfreespeech.net, and to create a si
 
 This guide includes deploying from github, so there is also an assumption that you are deploying from an existing repository. Although if you just want to install and run a fresh instance of Laravel for some reason, you can see how that is done here as well-- the difference being you install composer first, and then create a new laravel project.
  
+ ## Local environment notes
+
+ There is also a [document describing my local setup](laravel-dev-environment-notes.md) and a couple of considerations when targetting nearlyfreespeech.net as a production host.
+
+There is also a [document describing the begining of my deployment workflow](pre-deployment.md) on my local dev machine.
+
 # Start Doing it here
 Installing a project named `laravelproject` 
 
