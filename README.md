@@ -171,6 +171,15 @@ After fetching as above run through these steps to restore the symlink setup whi
     $ cp -a public_bak/* public/
     $ cp /home/private/index.php public/
 
+#### Update dependencies
+
+Run composer to install specified dependencies. You may have changed some dependencies in dev, and you want those on prod. You may have run `composer update` somewhere in dev, and tested it, and committed it, and your `composer.lock` stored in git reflects the dependencies you tested.
+
+    $ cd /home/protected/laravelproject
+    $ php composer install --no-dev
+
+>if you are new to composer you will like to know this before you break a prod site.  See the [best explanation here](https://adamcod.es/2013/03/07/composer-install-vs-composer-update.html)
+
 
 ## Other Notes and Dependencies
 
