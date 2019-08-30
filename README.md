@@ -1,19 +1,15 @@
 # deploy-laravel-nfs
 Running notes on deploying a [Laravel](https://laravel.com/) 5.4+ site to [nearlyfreespeech.net](nearlyfreespeech.net) shared server host from a [github](github.com) repository.
 
-# Purpose
-[nearlyfreespeech.net](nearlyfreespeech.net) is a performant and affordable webhost, and provides sound tools in the form of an admin web interface, exhaustive docs and good forums, and some excellent scripts... the user is required to understand a variety of topics in order to make it work. It is not a host that will hold your hand. There is no cPanel, Forge does not work here, you get a server, a database, a few custom admin web pages, and a shell. It is sublime.
-
-## Soooo... wut?
-Herein are my notes for deploying [Laravel](https://laravel.com/) sites using tested with versions 5.4 and 5.5 on [nearlyfreespeech.net](nearlyfreespeech.net). 
-
-## Didn't I see this elsewhere?
-Great thanks go to existing guides that document similar on more widely known shared hosting environments, foremost to [https://github.com/petehouston/laravel-deploy-on-shared-hosting](https://github.com/petehouston/laravel-deploy-on-shared-hosting) which is probably the guide you are looking for. I ran into a few distinctions along the way, and so produced this for my own purposes and reference for using this hosting service, and also learned and referenced a lot and wanted to share.
+## Differentiation
+Existing guides document similar on more widely known shared hosting environments, foremost to [https://github.com/petehouston/laravel-deploy-on-shared-hosting](https://github.com/petehouston/laravel-deploy-on-shared-hosting) or probably a newer version someehere. I encountered variations specific to nearlyfreespeech.net.
 
 Additional references are linked as needed throughout. 
 
 # Requirements
-Laravel has requirements, look them up. This is a methods presentation, *however* I have found that the general purpose Apache/PHP server option available when creating a site on nearlyfreespeech.net is a sufficient server out-of-the-box for a vanilla Laravel instance.
+Laravel [has requirements](https://laravel.com/docs/master/installation#server-requirements) that are important to this methods presentation.
+
+I have found that the general purpose Apache/PHP server option available when creating a site on nearlyfreespeech.net is a sufficient server out-of-the-box for a vanilla Laravel instance.
 
 To do this you need a funded account on nearlyfreespeech.net, and to create a site. If you have a domain, then that is nice, but you can create a site there without one. See their [excellent support options and doumentation here](https://members.nearlyfreespeech.net/buddhironsjr/support).
 
@@ -22,7 +18,7 @@ This guide includes deploying from github, so there is also an assumption that y
 # Start Doing it here
 Installing a project named `laravelproject` 
 
-> in the sample terminal commands below I always start with a `cd` command because I want to avoid any confusion about where things are happening. If you are sure you are in the right place all the time, then just gloss over it :)
+> in the sample terminal commands below I always start with a `cd` command because I want to avoid any confusion about where things are happening. I am not a terminal guy from the start, unless you count me using a DOS prompt to start SpaceWar
 
 ## Create a site
 Using the web admin page, create a new site, [instructions start here](https://members.nearlyfreespeech.net/faq?q=CreateSite#CreateSite)
